@@ -31,9 +31,11 @@ namespace LineFresh
 
 						//回傳 hellow
 						result = new List<ISendMessage>
-					{
-						new TextMessage("hellow")
-					};
+						{
+							new TextMessage($"ev.Message：{ev.Message}"),
+							new TextMessage($"ev.Source.Id：{ev.Source.Id}"),
+							new TextMessage($"ev.Source.UserId：{ev.Source.UserId}")
+						};
 					}
 					break;
 			}
