@@ -35,6 +35,8 @@ namespace LineFresh
 							//new TextMessage($"你說：{textMessage.Text}"),
 						};
 
+						var type = textMessage.Type;
+
 						//圖文選單回應
 						switch (textMessage.Text)
 						{
@@ -61,6 +63,9 @@ namespace LineFresh
 								break;
 							case "設定接收推播訊息":
 								result.Add(new TextMessage($"選擇你想接收的推播訊息："));
+								break;
+							default:
+								result.Add(new TextMessage($"訊息類型：{textMessage.Type}"));
 								break;
 						}
 					}
