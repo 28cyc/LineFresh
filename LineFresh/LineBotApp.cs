@@ -17,18 +17,14 @@ namespace LineFresh
 
 		protected override async Task OnMessageAsync(MessageEvent ev)
 		{
-			var result = null as List<ISendMessage>;
+			//回傳訊息
+			var result = new List<ISendMessage>();
+
 			switch (ev.Message)
 			{
 				//文字訊息
 				case TextEventMessage textMessage:
 					{
-						//回傳訊息
-						result = new List<ISendMessage>
-						{
-							//new TextMessage($"你說：{textMessage.Text}"),
-						};
-
 						//圖文選單回應
 						switch (textMessage.Text)
 						{
@@ -60,15 +56,10 @@ namespace LineFresh
 					}
 					break;
 				default:
-					//回傳訊息
-					result = new List<ISendMessage>
-					{
-						//new TextMessage($"你說：{textMessage.Text}"),
-					};
-
 					result.Add(new TextMessage($"訊息類型：{ev.Message.Type}"));
 					break;
 			}
+
 			if (result != null)
 				await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
