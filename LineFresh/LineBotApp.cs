@@ -71,6 +71,67 @@ namespace LineFresh
 		public void bingoGame(List<ISendMessage> result)
 		{
 			result.Add(new TextMessage($"老虎燈箱賓果遊戲規則如下："));
+
+			var container = new BubbleContainer
+			{
+				Header = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Contents = new IFlexComponent[]
+					{
+						new TextComponent
+						{
+							Text = $"老虎燈箱賓果遊戲規則",
+							Size = ComponentSize.Lg,
+							Weight = Weight.Bold
+						}
+					},
+				},
+				Body = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Contents = new IFlexComponent[]
+					{
+						new TextComponent
+						{
+							Text = $"規則巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉",
+							Wrap = true,
+						}
+					},
+				},
+				Footer = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Spacing = Spacing.Sm,
+					Contents = new IFlexComponent[]
+					{
+						new ButtonComponent
+						{
+							Style = ButtonStyle.Secondary,
+							Height = ButtonHeight.Sm,
+							Action = new PostbackTemplateAction("下一步", "xxx=123")
+						},
+						new SpacerComponent
+						{
+							Size=ComponentSize.Sm
+						}
+					},
+				}
+			};
+
+			result.Add(new FlexMessage("123")
+			{
+				Contents = container
+			});
+		}
+
+		protected override async Task OnPostbackAsync(PostbackEvent ev)
+		{
+			//將 data 資料轉成 QueryString
+			var query = HttpUtility.ParseQueryString(ev.Postback.Data);
+			//回覆訊息
+			await _messagingClient.ReplyMessageAsync(ev.ReplyToken,
+				$"收到的 xxx 是: {query["xxx"]}");
 		}
 
 		/// <summary>
