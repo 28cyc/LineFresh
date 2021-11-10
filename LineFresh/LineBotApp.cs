@@ -98,7 +98,7 @@ namespace LineFresh
 					result.Add(new TextMessage($"讀完食字路口接龍的規則"));
 					break;
 				case "townWalk":
-					result.Add(new TextMessage($"讀完小鎮散步觀察家的規則"));
+					townWalk(result);
 					break;
 			}
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
@@ -126,7 +126,7 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void townWalk(List<ISendMessage> result)
 		{
-			#region 訊息模板
+			#region 加入社群模板
 			var container = new BubbleContainer
 			{
 				Header = new BoxComponent
