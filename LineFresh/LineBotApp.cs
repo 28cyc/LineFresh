@@ -92,10 +92,10 @@ namespace LineFresh
 			switch (query["readRule"])
 			{
 				case "bingo":
-					result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
+					bingoGame(result);
 					break;
 				case "foodName":
-					result.Add(new TextMessage($"讀完食字路口接龍的規則"));
+					foodNameGame(result);
 					break;
 				case "townWalk":
 					townWalk(result);
@@ -110,6 +110,7 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void bingoGame(List<ISendMessage> result)
 		{
+			result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
 		}
 
 		/// <summary>
@@ -156,7 +157,7 @@ namespace LineFresh
 			});
 		}
 
-		#region 遊戲規則訊息模板
+		#region 遊戲規則訊息 模板
 		/// <summary>
 		/// 遊戲規則訊息模板
 		/// </summary>
