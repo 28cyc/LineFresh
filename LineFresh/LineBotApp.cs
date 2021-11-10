@@ -118,6 +118,23 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void foodNameGame(List<ISendMessage> result)
 		{
+			var message = new TextMessage("發送定位");
+			message.QuickReply = new QuickReply
+			{
+				Items = new List<QuickReplyButtonObject>
+				{
+					new QuickReplyButtonObject(new LocationTemplateAction("Location"))
+				}
+			};
+
+			//var button = new ButtonComponent
+			//{
+			//	Style = ButtonStyle.Secondary,
+			//	Height = ButtonHeight.Sm,
+			//	Action = new UriTemplateAction("找到食物，發送定位", "") //傳定位
+			//};
+			//var container = msgTemp("食字路口接龍", "題目：TEST", button);
+			result.Add(message);
 		}
 
 		/// <summary>
@@ -126,56 +143,13 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void townWalk(List<ISendMessage> result)
 		{
-			#region 加入社群模板
-			var container = new BubbleContainer
+			var button = new ButtonComponent
 			{
-				Header = new BoxComponent
-				{
-					Layout = BoxLayout.Vertical,
-					Contents = new IFlexComponent[]
-					{
-									new TextComponent
-									{
-										Text = $"小鎮散步觀察家",
-										Size = ComponentSize.Lg,
-										Weight = Weight.Bold
-									}
-					},
-				},
-				Body = new BoxComponent
-				{
-					Layout = BoxLayout.Vertical,
-					Contents = new IFlexComponent[]
-					{
-									new TextComponent
-									{
-										Text = $"本期投稿主題：TEST",
-										Wrap = true,
-									}
-					},
-				},
-				Footer = new BoxComponent
-				{
-					Layout = BoxLayout.Vertical,
-					Spacing = Spacing.Sm,
-					Contents = new IFlexComponent[]
-					{
-									new ButtonComponent
-									{
-										Style = ButtonStyle.Secondary,
-										Height = ButtonHeight.Sm,
-										Action = new UriTemplateAction("加入社群",
-											"https://line.me/ti/g2/XY6wleDShv0_w0YHwDdtfDh773qT4-nCFtpIqw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default")
-									},
-									new SpacerComponent
-									{
-										Size = ComponentSize.Sm
-									}
-					},
-					Flex = 0
-				}
+				Style = ButtonStyle.Secondary,
+				Height = ButtonHeight.Sm,
+				Action = new UriTemplateAction("加入社群", "https://line.me/ti/g2/XY6wleDShv0_w0YHwDdtfDh773qT4-nCFtpIqw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default")
 			};
-			#endregion
+			var container = msgTemp("小鎮散步觀察家", "本期投稿主題：TEST", button);
 			result.Add(new FlexMessage("小鎮散步觀察家本期投稿主題")
 			{
 				Contents = container
@@ -228,6 +202,55 @@ namespace LineFresh
 							Height = ButtonHeight.Sm,
 							Action = new PostbackTemplateAction("下一步", $"readRule={game}")
 						},
+						new SpacerComponent
+						{
+							Size = ComponentSize.Sm
+						}
+					},
+					Flex = 0
+				}
+			};
+			return container;
+		}
+		#endregion
+
+		#region 標題/內容/按鈕 模板
+		public BubbleContainer msgTemp(string title, string content, ButtonComponent button)
+		{
+			var container = new BubbleContainer
+			{
+				Header = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Contents = new IFlexComponent[]
+					{
+						new TextComponent
+						{
+							Text = $"{title}",
+							Size = ComponentSize.Lg,
+							Weight = Weight.Bold
+						}
+					},
+				},
+				Body = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Contents = new IFlexComponent[]
+					{
+						new TextComponent
+						{
+							Text = $"{content}",
+							Wrap = true,
+						}
+					},
+				},
+				Footer = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Spacing = Spacing.Sm,
+					Contents = new IFlexComponent[]
+					{
+						button,
 						new SpacerComponent
 						{
 							Size = ComponentSize.Sm
