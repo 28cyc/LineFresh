@@ -32,10 +32,21 @@ namespace LineFresh
 							case "老虎燈箱賓果":
 								var bingoContainer = ruleMessage("bingo", "老虎燈箱賓果遊戲規則",
 									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
-								result.Add(new FlexMessage("老虎燈箱賓果遊戲規則")
+								var message = new FlexMessage("老虎燈箱賓果遊戲規則") { Contents = bingoContainer };
+								message.QuickReply = new QuickReply
 								{
-									Contents = bingoContainer
-								});
+									Items = new List<QuickReplyButtonObject>
+									{
+										new QuickReplyButtonObject(
+											new MessageTemplateAction("台北", "台北"),
+											imageUrl: "https://xxx/image1.png"),
+										new QuickReplyButtonObject(
+											new LocationTemplateAction("選擇地點")),
+										new QuickReplyButtonObject(
+											new PostbackTemplateAction("下一步", $"readRule=bingo"))
+									}
+								};
+								result.Add(message);
 								break;
 							case "食字路口接龍":
 								var foodNameContainer = ruleMessage("foodName", "食字路口接龍遊戲規則",
