@@ -1,4 +1,4 @@
-﻿using Line.Messaging;
+using Line.Messaging;
 using Line.Messaging.Webhooks;
 using System;
 using System.Collections.Generic;
@@ -71,8 +71,48 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void bingoGame(List<ISendMessage> result)
 		{
-			result.Add(new TextMessage($"老虎燈箱賓果遊戲規則如下："));
+			var container = ruleMessage("bingo", "老虎燈箱賓果遊戲規則",
+				"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+			result.Add(new FlexMessage("老虎燈箱賓果遊戲規則")
+			{
+				Contents = container
+			});
+		}
 
+		/// <summary>
+		/// 食字路口接龍遊戲
+		/// </summary>
+		/// <param name="result"></param>
+		public void foodNameGame(List<ISendMessage> result)
+		{
+			var container = ruleMessage("foodName", "食字路口接龍遊戲規則",
+				"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+			result.Add(new FlexMessage("食字路口接龍遊戲規則")
+			{
+				Contents = container
+			});
+		}
+
+		/// <summary>
+		/// 小鎮散步觀察家
+		/// </summary>
+		/// <param name="result"></param>
+		public void townWalk(List<ISendMessage> result)
+		{
+			var container = ruleMessage("towmWalk", "小鎮散步觀察家投稿規則",
+				"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+			result.Add(new FlexMessage("小鎮散步觀察家投稿規則")
+			{
+				Contents = container
+			});
+		}
+
+		/// <summary>
+		/// 遊戲規則訊息模板
+		/// </summary>
+		/// <returns></returns>
+		public BubbleContainer ruleMessage(string game, string name, string rule)
+		{
 			var container = new BubbleContainer
 			{
 				Header = new BoxComponent
@@ -82,7 +122,7 @@ namespace LineFresh
 					{
 						new TextComponent
 						{
-							Text = $"老虎燈箱賓果遊戲規則",
+							Text = $"{name}",
 							Size = ComponentSize.Lg,
 							Weight = Weight.Bold
 						}
@@ -95,7 +135,7 @@ namespace LineFresh
 					{
 						new TextComponent
 						{
-							Text = $"規則巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉",
+							Text = $"{rule}",
 							Wrap = true,
 						}
 					},
@@ -110,47 +150,31 @@ namespace LineFresh
 						{
 							Style = ButtonStyle.Secondary,
 							Height = ButtonHeight.Sm,
-							Action = new PostbackTemplateAction("下一步", "xxx=123")
+							Action = new PostbackTemplateAction("下一步", $"readRule={game}")
 						},
 						new SpacerComponent
 						{
-							Size=ComponentSize.Sm
+							Size = ComponentSize.Sm
 						}
 					},
+					Flex = 0
 				}
 			};
-
-			result.Add(new FlexMessage("123")
-			{
-				Contents = container
-			});
+			return container;
 		}
 
+		/// <summary>
+		/// postback事件
+		/// </summary>
+		/// <param name="ev"></param>
+		/// <returns></returns>
 		protected override async Task OnPostbackAsync(PostbackEvent ev)
 		{
 			//將 data 資料轉成 QueryString
 			var query = HttpUtility.ParseQueryString(ev.Postback.Data);
 			//回覆訊息
 			await _messagingClient.ReplyMessageAsync(ev.ReplyToken,
-				$"收到的 xxx 是: {query["xxx"]}");
-		}
-
-		/// <summary>
-		/// 食字路口接龍遊戲
-		/// </summary>
-		/// <param name="result"></param>
-		public void foodNameGame(List<ISendMessage> result)
-		{
-			result.Add(new TextMessage($"食字路口接龍遊戲規則如下："));
-		}
-
-		/// <summary>
-		/// 小鎮散步觀察家
-		/// </summary>
-		/// <param name="result"></param>
-		public void townWalk(List<ISendMessage> result)
-		{
-			result.Add(new TextMessage($"小鎮散步觀察家投稿規則如下："));
+				$"已讀完{query["readRule"]}的規則");
 		}
 	}
 }
