@@ -29,12 +29,6 @@ namespace LineFresh
 						//使用者Id
 						var userId = ev.Source.UserId;
 
-						//回傳訊息
-						result = new List<ISendMessage>
-						{
-							//new TextMessage($"你說：{textMessage.Text}"),
-						};
-
 						var type = textMessage.Type;
 
 						//圖文選單回應
@@ -64,12 +58,13 @@ namespace LineFresh
 							case "設定接收推播訊息":
 								result.Add(new TextMessage($"選擇你想接收的推播訊息："));
 								break;
-							default:
-								result.Add(new TextMessage($"訊息類型：{textMessage.Type}"));
-								break;
 						}
 					}
 					break;
+				default:
+					result.Add(new TextMessage($"訊息類型：{ev.Message.Type}"));
+					break;
+
 			}
 
 			if (result != null)
