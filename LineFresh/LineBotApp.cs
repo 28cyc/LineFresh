@@ -37,8 +37,7 @@ namespace LineFresh
 								{
 									Items = new List<QuickReplyButtonObject>
 									{
-										new QuickReplyButtonObject(
-											new PostbackTemplateAction("下一步", $"readRule=bingo"))
+										new QuickReplyButtonObject(new PostbackTemplateAction("開始遊戲", $"readRule=bingo"))
 									}
 								};
 								result.Add(bingoMessage);
@@ -52,8 +51,7 @@ namespace LineFresh
 								{
 									Items = new List<QuickReplyButtonObject>
 									{
-										new QuickReplyButtonObject(
-											new PostbackTemplateAction("下一步", $"readRule=foodName"))
+										new QuickReplyButtonObject(new PostbackTemplateAction("開始遊戲", $"readRule=foodName"))
 									}
 								};
 								result.Add(foodNameMessage);
@@ -67,8 +65,7 @@ namespace LineFresh
 								{
 									Items = new List<QuickReplyButtonObject>
 									{
-										new QuickReplyButtonObject(
-											new PostbackTemplateAction("下一步", $"readRule=townWalk"))
+										new QuickReplyButtonObject(new PostbackTemplateAction("查看本期主題", $"readRule=townWalk"))
 									}
 								};
 								result.Add(townWalkMessage);
@@ -111,20 +108,30 @@ namespace LineFresh
 			//回傳訊息
 			var result = new List<ISendMessage>();
 
-			#region 遊戲規則下一步
-			switch (query["readRule"])
+			if (query["readRule"] != null)
 			{
-				case "bingo":
-					bingoGame(result);
-					break;
-				case "foodName":
-					foodNameGame(result);
-					break;
-				case "townWalk":
-					townWalk(result);
-					break;
+				#region 遊戲規則下一步
+				switch (query["readRule"])
+				{
+					case "bingo":
+						bingoGame(result);
+						break;
+					case "foodName":
+						foodNameGame(result);
+						break;
+					case "townWalk":
+						townWalk(result);
+						break;
+				}
+				#endregion
 			}
-			#endregion
+			if (query["foodName"] != null)
+			{
+				#region 食字路口接龍
+				string topic = query["foodName"];
+				result.Add(new TextMessage($"題目是：{topic}"));
+				#endregion
+			}
 
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
@@ -139,20 +146,24 @@ namespace LineFresh
 		}
 
 		/// <summary>
-		/// 食字路口接龍遊戲
+		/// 食字路口接龍遊戲開頭題目
 		/// </summary>
 		/// <param name="result"></param>
 		public void foodNameGame(List<ISendMessage> result)
 		{
-			var message = new TextMessage("發送定位");
-			message.QuickReply = new QuickReply
+			string topic = "綠豆";
+			result.Add(new TextMessage($"題目：{topic}"));
+			var button = new ButtonComponent
 			{
-				Items = new List<QuickReplyButtonObject>
-				{
-					new QuickReplyButtonObject(new LocationTemplateAction("Location"))
-				}
+				Style = ButtonStyle.Secondary,
+				Height = ButtonHeight.Sm,
+				Action = new PostbackTemplateAction("接龍", $"foodName={topic}")
 			};
-			result.Add(message);
+			var container = buttonTemp("食字路口接龍", $"題目：{topic}", button);
+			result.Add(new FlexMessage("食字路口接龍遊戲題目")
+			{
+				Contents = container
+			});
 		}
 
 		/// <summary>
@@ -174,7 +185,7 @@ namespace LineFresh
 			});
 		}
 
-		#region 標題/內容 模板
+		#region 標題/內容 模板 textTemp
 		public BubbleContainer textTemp(string title, string content)
 		{
 			var container = new BubbleContainer
@@ -209,7 +220,7 @@ namespace LineFresh
 		}
 		#endregion
 
-		#region 標題/內容/按鈕 模板
+		#region 標題/內容/按鈕 模板 buttonTemp
 		public BubbleContainer buttonTemp(string title, string content, ButtonComponent button)
 		{
 			var container = new BubbleContainer
