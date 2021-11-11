@@ -117,7 +117,7 @@ namespace LineFresh
 						bingoGame(result);
 						break;
 					case "foodName":
-						foodNameGame(result);
+						foodNameGameBegin(result);
 						break;
 					case "townWalk":
 						townWalk(result);
@@ -142,17 +142,42 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void bingoGame(List<ISendMessage> result)
 		{
-			result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
+			//result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
+			var imagemapMessage = new ImagemapMessage(
+				"https://fakeimg.pl/240x240/",
+				"老虎燈箱賓果",
+				new ImagemapSize(240, 240),
+				new List<IImagemapAction>
+				{
+					new MessageImagemapAction(
+						new ImagemapArea(0, 0, 80, 80), "1"),
+					new MessageImagemapAction(
+						new ImagemapArea(80, 0, 80, 80), "2"),
+					new MessageImagemapAction(
+						new ImagemapArea(160, 0, 80, 80), "3"),
+					new MessageImagemapAction(
+						new ImagemapArea(0, 80, 80, 80), "4"),
+					new MessageImagemapAction(
+						new ImagemapArea(80, 80, 80, 80), "5"),
+					new MessageImagemapAction(
+						new ImagemapArea(160, 80, 80, 80), "6"),
+					new MessageImagemapAction(
+						new ImagemapArea(0, 160, 80, 80), "7"),
+					new MessageImagemapAction(
+						new ImagemapArea(80, 160, 80, 80), "8"),
+					new MessageImagemapAction(
+						new ImagemapArea(160, 160, 80, 80), "9"),
+				});
+			result.Add(imagemapMessage);
 		}
 
 		/// <summary>
 		/// 食字路口接龍遊戲開頭題目
 		/// </summary>
 		/// <param name="result"></param>
-		public void foodNameGame(List<ISendMessage> result)
+		public void foodNameGameBegin(List<ISendMessage> result)
 		{
 			string topic = "綠豆";
-			result.Add(new TextMessage($"題目：{topic}"));
 			var button = new ButtonComponent
 			{
 				Style = ButtonStyle.Secondary,
