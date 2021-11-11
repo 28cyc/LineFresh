@@ -30,40 +30,50 @@ namespace LineFresh
 						switch (textMessage.Text)
 						{
 							case "老虎燈箱賓果":
-								var bingoContainer = ruleMessage("bingo", "老虎燈箱賓果遊戲規則",
-									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
-								var message = new FlexMessage("老虎燈箱賓果遊戲規則") { Contents = bingoContainer };
-								message.QuickReply = new QuickReply
+								var bingoContainer = textTemp("老虎燈箱賓果遊戲規則",
+									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+								var bingoMessage = new FlexMessage("老虎燈箱賓果遊戲規則") { Contents = bingoContainer };
+								bingoMessage.QuickReply = new QuickReply
 								{
 									Items = new List<QuickReplyButtonObject>
 									{
 										new QuickReplyButtonObject(
-											new MessageTemplateAction("台北", "台北"),
-											imageUrl: "https://xxx/image1.png"),
-										new QuickReplyButtonObject(
-											new LocationTemplateAction("選擇地點")),
-										new QuickReplyButtonObject(
 											new PostbackTemplateAction("下一步", $"readRule=bingo"))
 									}
 								};
-								result.Add(message);
+								result.Add(bingoMessage);
 								break;
+
 							case "食字路口接龍":
-								var foodNameContainer = ruleMessage("foodName", "食字路口接龍遊戲規則",
-									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
-								result.Add(new FlexMessage("食字路口接龍遊戲規則")
+								var foodNameContainer = textTemp("食字路口接龍遊戲規則",
+									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+								var foodNameMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = foodNameContainer };
+								foodNameMessage.QuickReply = new QuickReply
 								{
-									Contents = foodNameContainer
-								});
+									Items = new List<QuickReplyButtonObject>
+									{
+										new QuickReplyButtonObject(
+											new PostbackTemplateAction("下一步", $"readRule=foodName"))
+									}
+								};
+								result.Add(foodNameMessage);
 								break;
+
 							case "小鎮散步觀察家":
-								var townWalkContainer = ruleMessage("townWalk", "小鎮散步觀察家投稿規則",
-									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
-								result.Add(new FlexMessage("小鎮散步觀察家投稿規則")
+								var townWalkContainer = textTemp("小鎮散步觀察家投稿規則",
+									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+								var townWalkMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = townWalkContainer };
+								townWalkMessage.QuickReply = new QuickReply
 								{
-									Contents = townWalkContainer
-								});
+									Items = new List<QuickReplyButtonObject>
+									{
+										new QuickReplyButtonObject(
+											new PostbackTemplateAction("下一步", $"readRule=townWalk"))
+									}
+								};
+								result.Add(townWalkMessage);
 								break;
+
 							case "查看我的集點卡":
 								result.Add(new TextMessage($"您擁有的集點卡如下："));
 								break;
@@ -100,6 +110,8 @@ namespace LineFresh
 			var query = HttpUtility.ParseQueryString(ev.Postback.Data);
 			//回傳訊息
 			var result = new List<ISendMessage>();
+
+			#region 遊戲規則下一步
 			switch (query["readRule"])
 			{
 				case "bingo":
@@ -112,6 +124,8 @@ namespace LineFresh
 					townWalk(result);
 					break;
 			}
+			#endregion
+
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
 
@@ -138,14 +152,6 @@ namespace LineFresh
 					new QuickReplyButtonObject(new LocationTemplateAction("Location"))
 				}
 			};
-
-			//var button = new ButtonComponent
-			//{
-			//	Style = ButtonStyle.Secondary,
-			//	Height = ButtonHeight.Sm,
-			//	Action = new UriTemplateAction("找到食物，發送定位", "") //傳定位
-			//};
-			//var container = msgTemp("食字路口接龍", "題目：TEST", button);
 			result.Add(message);
 		}
 
@@ -161,19 +167,15 @@ namespace LineFresh
 				Height = ButtonHeight.Sm,
 				Action = new UriTemplateAction("加入社群", "https://line.me/ti/g2/XY6wleDShv0_w0YHwDdtfDh773qT4-nCFtpIqw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default")
 			};
-			var container = msgTemp("小鎮散步觀察家", "本期投稿主題：TEST", button);
+			var container = buttonTemp("小鎮散步觀察家", "本期投稿主題：TEST", button);
 			result.Add(new FlexMessage("小鎮散步觀察家本期投稿主題")
 			{
 				Contents = container
 			});
 		}
 
-		#region 遊戲規則訊息 模板
-		/// <summary>
-		/// 遊戲規則訊息模板
-		/// </summary>
-		/// <returns></returns>
-		public BubbleContainer ruleMessage(string game, string name, string rule)
+		#region 標題/內容 模板
+		public BubbleContainer textTemp(string title, string content)
 		{
 			var container = new BubbleContainer
 			{
@@ -184,7 +186,7 @@ namespace LineFresh
 					{
 						new TextComponent
 						{
-							Text = $"{name}",
+							Text = $"{title}",
 							Size = ComponentSize.Lg,
 							Weight = Weight.Bold
 						}
@@ -197,37 +199,18 @@ namespace LineFresh
 					{
 						new TextComponent
 						{
-							Text = $"{rule}",
+							Text = $"{content}",
 							Wrap = true,
 						}
 					},
 				},
-				Footer = new BoxComponent
-				{
-					Layout = BoxLayout.Vertical,
-					Spacing = Spacing.Sm,
-					Contents = new IFlexComponent[]
-					{
-						new ButtonComponent
-						{
-							Style = ButtonStyle.Secondary,
-							Height = ButtonHeight.Sm,
-							Action = new PostbackTemplateAction("下一步", $"readRule={game}")
-						},
-						new SpacerComponent
-						{
-							Size = ComponentSize.Sm
-						}
-					},
-					Flex = 0
-				}
 			};
 			return container;
 		}
 		#endregion
 
 		#region 標題/內容/按鈕 模板
-		public BubbleContainer msgTemp(string title, string content, ButtonComponent button)
+		public BubbleContainer buttonTemp(string title, string content, ButtonComponent button)
 		{
 			var container = new BubbleContainer
 			{
