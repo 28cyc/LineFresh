@@ -146,27 +146,27 @@ namespace LineFresh
 			var imagemapMessage = new ImagemapMessage(
 				"https://fakeimg.pl/240x240/",
 				"老虎燈箱賓果",
-				new ImagemapSize(240, 240),
+				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
 				{
 					new MessageImagemapAction(
-						new ImagemapArea(0, 0, 80, 80), "1"),
+						new ImagemapArea(0, 0, 340, 340), "1"),
 					new MessageImagemapAction(
-						new ImagemapArea(80, 0, 80, 80), "2"),
+						new ImagemapArea(340, 0, 340, 340), "2"),
 					new MessageImagemapAction(
-						new ImagemapArea(160, 0, 80, 80), "3"),
+						new ImagemapArea(680, 0, 340, 340), "3"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 80, 80, 80), "4"),
+						new ImagemapArea(0, 340, 340, 340), "4"),
 					new MessageImagemapAction(
-						new ImagemapArea(80, 80, 80, 80), "5"),
+						new ImagemapArea(340, 340, 340, 340), "5"),
 					new MessageImagemapAction(
-						new ImagemapArea(160, 80, 80, 80), "6"),
+						new ImagemapArea(680, 340, 340, 340), "6"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 160, 80, 80), "7"),
+						new ImagemapArea(0, 680, 340, 340), "7"),
 					new MessageImagemapAction(
-						new ImagemapArea(80, 160, 80, 80), "8"),
+						new ImagemapArea(340, 680, 340, 340), "8"),
 					new MessageImagemapAction(
-						new ImagemapArea(160, 160, 80, 80), "9"),
+						new ImagemapArea(680, 680, 340, 340), "9"),
 				});
 			result.Add(imagemapMessage);
 		}
