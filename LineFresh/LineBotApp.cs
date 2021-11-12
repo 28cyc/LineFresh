@@ -225,8 +225,8 @@ namespace LineFresh
 				{
 					Items = new List<QuickReplyButtonObject>
 					{
-						new QuickReplyButtonObject(new PostbackTemplateAction("重新設定", $"discountMsg=true", "設定接收推播訊息", true)),
-						new QuickReplyButtonObject(new PostbackTemplateAction("完成", $"discountMsg=true")),
+						new QuickReplyButtonObject(new MessageTemplateAction("重新設定", "設定接收推播訊息")),
+						new QuickReplyButtonObject(new MessageTemplateAction("完成" ,"")),
 					}
 				}; result.Add(message);
 
