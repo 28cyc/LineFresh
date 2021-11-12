@@ -266,7 +266,7 @@ namespace LineFresh
 		public void bingoGame(List<ISendMessage> result)
 		{
 			var imagemapMessage = new ImagemapMessage(
-				"https://fakeimg.pl/240x240/",
+				"https://scontent.ftpe1-3.fna.fbcdn.net/v/t39.30808-6/247923380_4791399447550292_2540412566026765861_n.jpg?_nc_cat=107&_nc_rgb565=1&ccb=1-5&_nc_sid=730e14&_nc_ohc=L7OcRmDqi5QAX_MDjIz&_nc_ht=scontent.ftpe1-3.fna&oh=42bd90d105e0c0b54e70d7441f2c262c&oe=6193B834",
 				"老虎燈箱賓果",
 				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
