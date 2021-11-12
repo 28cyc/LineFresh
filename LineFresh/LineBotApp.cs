@@ -186,7 +186,7 @@ namespace LineFresh
 				#region 推薦店家條件
 				string type = query["findShop"];
 				var message = new TextMessage($"條件：{type}");
-				var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = textTemp("北港阿榮古早味", "123") };
+				var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = lineSpotTemp() };
 				//result.Add(message);
 				result.Add(lineSpotMessage);
 				#endregion
@@ -368,11 +368,7 @@ namespace LineFresh
 		{
 			var container = new BubbleContainer
 			{
-				Hero = new ImageComponent
-				{
-					Url = "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png"
-				},
-				Body = new BoxComponent
+				Header = new BoxComponent
 				{
 					Layout = BoxLayout.Vertical,
 					Contents = new IFlexComponent[]
@@ -382,30 +378,22 @@ namespace LineFresh
 							Text = $"北港阿榮古早味-虎尾店",
 							Size = ComponentSize.Lg,
 							Weight = Weight.Bold
-						},
+						}
+					},
+				},
+				Body = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Contents = new IFlexComponent[]
+					{
 						new IconComponent
 						{
-							Url="https://cdn-icons-png.flaticon.com/512/1946/1946488.png",
+							Url = "https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
 						},
 						new TextComponent
 						{
 							Text = $"雲林縣虎尾鎮中山路61號",
-							Size = ComponentSize.Sm,
-							Color = "#666666",
 							Wrap = true,
-							Flex = 5
-						},
-						new IconComponent
-						{
-							Url="https://cdn-icons-png.flaticon.com/512/159/159832.png",
-						},
-						new TextComponent
-						{
-							Text = $"0905 398 060",
-							Size = ComponentSize.Sm,
-							Color = "#666666",
-							Wrap = true,
-							Flex = 5
 						}
 					},
 				},
@@ -417,7 +405,7 @@ namespace LineFresh
 					{
 						new ButtonComponent
 						{
-							Style = ButtonStyle.Primary,
+							Style = ButtonStyle.Secondary,
 							Height = ButtonHeight.Sm,
 							Action = new UriTemplateAction("查看更多", "https://spot.line.me/detail/608436397870683437?utm_campaign=608436397870683437&utm_medium=CopyURL&utm_source=Share")
 						},
