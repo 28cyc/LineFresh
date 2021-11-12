@@ -148,6 +148,7 @@ namespace LineFresh
 										new QuickReplyButtonObject(new LocationTemplateAction("傳送定位")),
 									}
 								};
+								result.Add(foodNameLocationMessage);
 								break;
 
 							default:
