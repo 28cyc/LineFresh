@@ -383,13 +383,13 @@ namespace LineFresh
 				},
 				Body = new BoxComponent
 				{
-					Layout = BoxLayout.Vertical,
+					Layout = BoxLayout.Baseline,
 					Contents = new IFlexComponent[]
 					{
-						//new IconComponent
-						//{
-						//	Url = "https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
-						//},
+						new IconComponent
+						{
+							Url = "https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
+						},
 						new TextComponent
 						{
 							Text = $"雲林縣虎尾鎮中山路61號",
