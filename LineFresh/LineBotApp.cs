@@ -243,6 +243,7 @@ namespace LineFresh
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
 
+		#region 加入好友歡迎訊息
 		/// <summary>
 		/// 加入好友事件
 		/// </summary>
@@ -262,6 +263,7 @@ namespace LineFresh
 			}; result.Add(message);
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
+		#endregion
 
 		#region 老虎燈箱
 		/// <summary>
@@ -271,7 +273,7 @@ namespace LineFresh
 		public void bingoGame(List<ISendMessage> result)
 		{
 			var imagemapMessage = new ImagemapMessage(
-				"https://i.imgur.com/Oyj2mTF.jpg#",
+				"https://i.imgur.com/eHxanaE.jpg#",
 				"老虎燈箱賓果",
 				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
