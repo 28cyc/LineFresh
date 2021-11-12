@@ -140,7 +140,14 @@ namespace LineFresh
 
 							case "豆漿":
 								var lastWord = textMessage.Text.Substring(textMessage.Text.Length - 1);
-								result.Add(new TextMessage($"接龍成功！接著請回答以 {lastWord} 為開頭的食物"));
+								var foodNameLocationMessage = new TextMessage($"接龍成功！請傳送您的定位");
+								foodNameLocationMessage.QuickReply = new QuickReply
+								{
+									Items = new List<QuickReplyButtonObject>
+									{
+										new QuickReplyButtonObject(new LocationTemplateAction("傳送定位")),
+									}
+								};
 								break;
 
 							default:
@@ -148,6 +155,11 @@ namespace LineFresh
 								result.Add(bingoTemp("https://i.imgur.com/eHxanaE.jpg#"));
 								break;
 						}
+					}
+					break;
+				case LocationEventMessage locationMessage:
+					{
+						result.Add(new TextMessage($"定位成功！接下來請回答以 漿 開頭的食物"));
 					}
 					break;
 			}
