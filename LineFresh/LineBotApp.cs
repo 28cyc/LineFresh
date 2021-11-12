@@ -139,6 +139,8 @@ namespace LineFresh
 								break;
 
 							case "豆漿":
+								var lastWord = textMessage.Text.Substring(textMessage.Text.Length - 1);
+								result.Add(new TextMessage($"接龍成功！接著請回答以 {lastWord} 為開頭的食物"));
 								break;
 
 							default:
@@ -188,7 +190,7 @@ namespace LineFresh
 			{
 				#region 食字路口接龍
 				string topic = query["foodName"].Substring(0, 1);
-				result.Add(new TextMessage($"請回答以{topic}開頭的食物"));
+				result.Add(new TextMessage($"請回答以 {topic} 開頭的食物"));
 				#endregion
 			}
 
