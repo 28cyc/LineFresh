@@ -186,22 +186,22 @@ namespace LineFresh
 				#region 推薦店家條件
 				string type = query["findShop"];
 				var message = new TextMessage($"條件：{type}");
-				//var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = lineSpotTemp() };
-				result.Add(message);
-				//result.Add(lineSpotMessage);
+				var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = textTemp("北港阿榮古早味", "123") };
+				//result.Add(message);
+				result.Add(lineSpotMessage);
 				#endregion
 			}
 
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
 
+		#region 老虎燈箱
 		/// <summary>
 		/// 老虎燈箱賓果遊戲
 		/// </summary>
 		/// <param name="result"></param>
 		public void bingoGame(List<ISendMessage> result)
 		{
-			//result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
 			var imagemapMessage = new ImagemapMessage(
 				"https://fakeimg.pl/240x240/",
 				"老虎燈箱賓果",
@@ -234,7 +234,9 @@ namespace LineFresh
 		{
 
 		}
+		#endregion
 
+		#region 食字路口
 		/// <summary>
 		/// 食字路口接龍遊戲開頭題目
 		/// </summary>
@@ -254,7 +256,9 @@ namespace LineFresh
 				Contents = container
 			});
 		}
+		#endregion
 
+		#region 小鎮散步
 		/// <summary>
 		/// 小鎮散步觀察家
 		/// </summary>
@@ -273,6 +277,7 @@ namespace LineFresh
 				Contents = container
 			});
 		}
+		#endregion
 
 		#region 標題/內容 模板 textTemp
 		public BubbleContainer textTemp(string title, string content)
