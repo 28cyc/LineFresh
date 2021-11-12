@@ -71,6 +71,21 @@ namespace LineFresh
 								result.Add(townWalkMessage);
 								break;
 
+							case "立即推薦店家":
+								var message = new TextMessage("選擇想找的店家類型");
+								message.QuickReply = new QuickReply
+								{
+									Items = new List<QuickReplyButtonObject>
+									{
+										new QuickReplyButtonObject(new PostbackTemplateAction("美食", $"findShop=美食")),
+										new QuickReplyButtonObject(new PostbackTemplateAction("飲料", $"findShop=飲料")),
+										new QuickReplyButtonObject(new PostbackTemplateAction("服飾", $"findShop=服飾"))
+									}
+								};
+								result.Add(message);
+								break;
+
+
 							#region 還沒寫
 							case "查看我的集點卡":
 								result.Add(new TextMessage($"您擁有的集點卡如下："));
@@ -80,9 +95,6 @@ namespace LineFresh
 								break;
 							case "商圈活動查詢":
 								result.Add(new TextMessage($"近期商圈的活動資訊如下："));
-								break;
-							case "立即推薦店家":
-								result.Add(new TextMessage($"你想去的店家類型為："));
 								break;
 							case "設定接收推播訊息":
 								result.Add(new TextMessage($"選擇你想接收的推播訊息："));
@@ -147,6 +159,14 @@ namespace LineFresh
 				#region 食字路口接龍
 				string topic = query["foodName"];
 				result.Add(new TextMessage($"題目是：{topic}"));
+				#endregion
+			}
+
+			if (query["findShop"] != null)
+			{
+				#region 隨機推薦美食
+				string type = query["findShop"];
+				result.Add(new TextMessage($"想找類型：{type}"));
 				#endregion
 			}
 
