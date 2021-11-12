@@ -77,9 +77,9 @@ namespace LineFresh
 								{
 									Items = new List<QuickReplyButtonObject>
 									{
-										new QuickReplyButtonObject(new PostbackTemplateAction("美食", $"findShop=美食")),
-										new QuickReplyButtonObject(new PostbackTemplateAction("飲料", $"findShop=飲料")),
-										new QuickReplyButtonObject(new PostbackTemplateAction("服飾", $"findShop=服飾"))
+										new QuickReplyButtonObject(new PostbackTemplateAction("美食", $"shopType=美食")),
+										new QuickReplyButtonObject(new PostbackTemplateAction("飲料", $"shopType=飲料")),
+										new QuickReplyButtonObject(new PostbackTemplateAction("服飾", $"shopType=服飾"))
 									}
 								};
 								result.Add(message);
@@ -162,11 +162,32 @@ namespace LineFresh
 				#endregion
 			}
 
+			if (query["shopType"] != null)
+			{
+				#region 推薦店家類型
+				string type = query["shopType"];
+				//var message = new TextMessage($"想找類型：{type}");
+				var message = new TextMessage($"選擇推薦的條件依據");
+				message.QuickReply = new QuickReply
+				{
+					Items = new List<QuickReplyButtonObject>
+					{
+						new QuickReplyButtonObject(new PostbackTemplateAction("隨機", $"findShop=隨機")),
+						new QuickReplyButtonObject(new PostbackTemplateAction("價位", $"findShop=價位")),
+						new QuickReplyButtonObject(new LocationTemplateAction("定位距離"))
+					}
+				};
+				result.Add(message);
+				#endregion
+			}
+
 			if (query["findShop"] != null)
 			{
-				#region 隨機推薦美食
+				#region 推薦店家條件
 				string type = query["findShop"];
-				result.Add(new TextMessage($"想找類型：{type}"));
+				var message = new TextMessage($"條件：{type}");
+				//var message = new TextMessage($"選擇推薦的條件依據");
+				result.Add(message);
 				#endregion
 			}
 
