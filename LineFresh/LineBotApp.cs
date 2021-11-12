@@ -185,8 +185,9 @@ namespace LineFresh
 			{
 				#region 推薦店家條件
 				string type = query["findShop"];
-				//var message = new TextMessage($"條件：{type}");
+				var message = new TextMessage($"條件：{type}");
 				var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = lineSpotTemp() };
+				result.Add(message);
 				result.Add(lineSpotMessage);
 				#endregion
 			}
