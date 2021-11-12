@@ -275,27 +275,27 @@ namespace LineFresh
 			var imagemapMessage = new ImagemapMessage(
 				"https://i.imgur.com/eHxanaE.jpg#",
 				"老虎燈箱賓果",
-				new ImagemapSize(1020, 1020),
+				new ImagemapSize(990, 990),
 				new List<IImagemapAction>
 				{
 					new MessageImagemapAction(
-						new ImagemapArea(0, 0, 340, 340), "找到第1張燈箱"),
+						new ImagemapArea(0, 0, 330, 330), "找到第1張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(340, 0, 340, 340), "找到第2張燈箱"),
+						new ImagemapArea(330, 0, 330, 330), "找到第2張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(680, 0, 340, 340), "找到第3張燈箱"),
+						new ImagemapArea(660, 0, 330, 330), "找到第3張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 340, 340, 340), "找到第4張燈箱"),
+						new ImagemapArea(0, 330, 330, 330), "找到第4張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(340, 340, 340, 340), "找到第5張燈箱"),
+						new ImagemapArea(330, 330, 330, 330), "找到第5張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(680, 340, 340, 340), "找到第6張燈箱"),
+						new ImagemapArea(660, 330, 330, 330), "找到第6張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 680, 340, 340), "找到第7張燈箱"),
+						new ImagemapArea(0, 660, 330, 330), "找到第7張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(340, 680, 340, 340), "找到第8張燈箱"),
+						new ImagemapArea(330, 660, 330, 330), "找到第8張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(680, 680, 340, 340), "找到第9張燈箱"),
+						new ImagemapArea(660, 660, 330, 330), "找到第9張燈箱"),
 				});
 			result.Add(imagemapMessage);
 		}
