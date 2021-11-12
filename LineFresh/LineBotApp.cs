@@ -200,13 +200,6 @@ namespace LineFresh
 				#region 食字路口接龍
 				string topic = query["foodName"].Substring(query["foodName"].Length - 1);
 				var message = new TextMessage($"請回答以 {topic} 開頭的食物");
-				message.QuickReply = new QuickReply
-				{
-					Items = new List<QuickReplyButtonObject>
-					{
-						new QuickReplyButtonObject(new LocationTemplateAction("傳送定位")),
-					}
-				};
 				result.Add(message);
 				#endregion
 			}
