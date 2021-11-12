@@ -77,7 +77,7 @@ namespace LineFresh
 								};
 								result.Add(townWalkMessage);
 								break;
-							#endregion 
+							#endregion
 
 							case "立即推薦店家":
 								var message = new TextMessage("選擇想找的店家類型");
@@ -135,9 +135,15 @@ namespace LineFresh
 
 							case "樂包子":
 								result.Add(new TextMessage($"答對了！完成第8格燈箱"));
+								result.Add(bingoTemp("https://i.imgur.com/pYIwLeE.jpg#"));
 								break;
+
+							case "豆漿":
+								break;
+
 							default:
 								result.Add(new TextMessage($"答錯了！再找看看吧"));
+								result.Add(bingoTemp("https://i.imgur.com/eHxanaE.jpg#"));
 								break;
 						}
 					}
@@ -181,8 +187,8 @@ namespace LineFresh
 			if (query["foodName"] != null)
 			{
 				#region 食字路口接龍
-				string topic = query["foodName"];
-				result.Add(new TextMessage($"題目是：{topic}"));
+				string topic = query["foodName"].Substring(0, 1);
+				result.Add(new TextMessage($"請回答以{topic}開頭的食物"));
 				#endregion
 			}
 
@@ -279,32 +285,7 @@ namespace LineFresh
 		/// <param name="result"></param>
 		public void bingoGame(List<ISendMessage> result)
 		{
-			var imagemapMessage = new ImagemapMessage(
-				"https://i.imgur.com/eHxanaE.jpg#",
-				"老虎燈箱賓果",
-				new ImagemapSize(1040, 1040),
-				new List<IImagemapAction>
-				{
-					new MessageImagemapAction(
-						new ImagemapArea(0, 0, 345, 345), "找到第1張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(345, 0, 345, 345), "找到第2張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(690, 0, 345, 345), "找到第3張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(0, 345, 345, 345), "找到第4張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(345, 345, 345, 345), "找到第5張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(690, 345, 345, 345), "找到第6張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(0, 690, 345, 345), "找到第7張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(345, 690, 345, 345), "找到第8張燈箱"),
-					new MessageImagemapAction(
-						new ImagemapArea(690, 690, 345, 345), "找到第9張燈箱"),
-				});
-			result.Add(imagemapMessage);
+			result.Add(bingoTemp("https://i.imgur.com/eHxanaE.jpg#"));
 		}
 		#endregion
 
@@ -487,7 +468,7 @@ namespace LineFresh
 								{
 									Text = $" 0905 398 060",
 									Wrap = true,
-								}                       
+								}
 							}
 						}
 					},
@@ -513,6 +494,29 @@ namespace LineFresh
 				}
 			};
 			return container;
+		}
+		#endregion
+
+		#region 賓果 bingoTemp
+		public ImagemapMessage bingoTemp(string baseUrl)
+		{
+			var imagemapMessage = new ImagemapMessage(
+			baseUrl,
+			"老虎燈箱賓果",
+			new ImagemapSize(1040, 1040),
+			new List<IImagemapAction>
+			{
+				new MessageImagemapAction( new ImagemapArea(0, 0, 345, 345), "找到第1張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(345, 0, 345, 345), "找到第2張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(690, 0, 345, 345), "找到第3張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(0, 345, 345, 345), "找到第4張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(345, 345, 345, 345), "找到第5張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(690, 345, 345, 345), "找到第6張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(0, 690, 345, 345), "找到第7張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(345, 690, 345, 345), "找到第8張燈箱"),
+				new MessageImagemapAction( new ImagemapArea(690, 690, 345, 345), "找到第9張燈箱"),
+			});
+			return imagemapMessage;
 		}
 		#endregion
 	}
