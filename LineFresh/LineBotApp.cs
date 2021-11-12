@@ -26,7 +26,7 @@ namespace LineFresh
 				//文字訊息
 				case TextEventMessage textMessage:
 					{
-						//圖文選單回應
+						//文字回應
 						switch (textMessage.Text)
 						{
 							case "老虎燈箱賓果":
@@ -71,6 +71,7 @@ namespace LineFresh
 								result.Add(townWalkMessage);
 								break;
 
+							#region 還沒寫
 							case "查看我的集點卡":
 								result.Add(new TextMessage($"您擁有的集點卡如下："));
 								break;
@@ -86,6 +87,22 @@ namespace LineFresh
 							case "設定接收推播訊息":
 								result.Add(new TextMessage($"選擇你想接收的推播訊息："));
 								break;
+							#endregion
+
+							#region 找到燈箱
+							case "找到第1張燈箱":
+							case "找到第2張燈箱":
+							case "找到第3張燈箱":
+							case "找到第4張燈箱":
+							case "找到第5張燈箱":
+							case "找到第6張燈箱":
+							case "找到第7張燈箱":
+							case "找到第8張燈箱":
+							case "找到第9張燈箱":
+								int position = int.Parse(textMessage.Text.Substring(3, 1));
+								result.Add(new TextMessage($"請問第{position}張燈箱的店家為？"));
+								break;
+							#endregion
 						}
 					}
 					break;
@@ -144,31 +161,36 @@ namespace LineFresh
 		{
 			//result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
 			var imagemapMessage = new ImagemapMessage(
-				"https://github.com/line/line-bot-sdk-nodejs/tree/master/examples/kitchensink/static/rich",
+				"https://fakeimg.pl/240x240/",
 				"老虎燈箱賓果",
 				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
 				{
 					new MessageImagemapAction(
-						new ImagemapArea(0, 0, 340, 340), "1"),
+						new ImagemapArea(0, 0, 340, 340), "找到第1張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(340, 0, 340, 340), "2"),
+						new ImagemapArea(340, 0, 340, 340), "找到第2張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(680, 0, 340, 340), "3"),
+						new ImagemapArea(680, 0, 340, 340), "找到第3張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 340, 340, 340), "4"),
+						new ImagemapArea(0, 340, 340, 340), "找到第4張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(340, 340, 340, 340), "5"),
+						new ImagemapArea(340, 340, 340, 340), "找到第5張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(680, 340, 340, 340), "6"),
+						new ImagemapArea(680, 340, 340, 340), "找到第6張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 680, 340, 340), "7"),
+						new ImagemapArea(0, 680, 340, 340), "找到第7張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(340, 680, 340, 340), "8"),
+						new ImagemapArea(340, 680, 340, 340), "找到第8張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(680, 680, 340, 340), "9"),
+						new ImagemapArea(680, 680, 340, 340), "找到第9張燈箱"),
 				});
 			result.Add(imagemapMessage);
+		}
+
+		public void answerBingo()
+		{
+
 		}
 
 		/// <summary>
