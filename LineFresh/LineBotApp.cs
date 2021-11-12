@@ -238,6 +238,26 @@ namespace LineFresh
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
 
+		/// <summary>
+		/// 加入好友事件
+		/// </summary>
+		/// <param name="ev"></param>
+		/// <returns></returns>
+		protected override async Task OnFollowAsync(FollowEvent ev)
+		{
+			//回傳訊息
+			var result = new List<ISendMessage>();
+			var message = new TextMessage($"你好！歡迎來到虎尾魅力商圈，請點選下一步開始設定接收推播訊息。");
+			message.QuickReply = new QuickReply
+			{
+				Items = new List<QuickReplyButtonObject>
+				{
+					new QuickReplyButtonObject(new MessageTemplateAction("下一步", "設定接收推播訊息")),
+				}
+			}; result.Add(message);
+			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
+		}
+
 		#region 老虎燈箱
 		/// <summary>
 		/// 老虎燈箱賓果遊戲
