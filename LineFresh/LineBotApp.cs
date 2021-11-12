@@ -85,6 +85,19 @@ namespace LineFresh
 								result.Add(message);
 								break;
 
+							case "設定接收推播訊息":
+								var activeMsg = new TextMessage($"是否願意接收商圈活動相關訊息推播");
+								activeMsg.QuickReply = new QuickReply
+								{
+									Items = new List<QuickReplyButtonObject>
+									{
+										new QuickReplyButtonObject(new PostbackTemplateAction("是", $"activeMsg=true", "我願意接收商圈活動相關訊息推播", true)),
+										new QuickReplyButtonObject(new PostbackTemplateAction("否", $"activeMsg=false", "我不想接收商圈活動相關訊息推播", true)),
+									}
+								};
+								result.Add(activeMsg);
+								break;
+
 
 							#region 還沒寫
 							case "查看我的集點卡":
@@ -95,9 +108,6 @@ namespace LineFresh
 								break;
 							case "商圈活動查詢":
 								result.Add(new TextMessage($"近期商圈的活動資訊如下："));
-								break;
-							case "設定接收推播訊息":
-								result.Add(new TextMessage($"選擇你想接收的推播訊息："));
 								break;
 							#endregion
 
@@ -189,6 +199,37 @@ namespace LineFresh
 				var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = lineSpotTemp() };
 				//result.Add(message);
 				result.Add(lineSpotMessage);
+				#endregion
+			}
+
+			if (query["activeMsg"] != null)
+			{
+				#region 接收活動訊息推播
+				var discountMsg = new TextMessage($"是否願意接收商圈店家優惠相關訊息推播");
+				discountMsg.QuickReply = new QuickReply
+				{
+					Items = new List<QuickReplyButtonObject>
+					{
+						new QuickReplyButtonObject(new PostbackTemplateAction("是", $"discountMsg=true", "我願意接收商圈店家優惠相關訊息推播", true)),
+						new QuickReplyButtonObject(new PostbackTemplateAction("否", $"discountMsg=false", "我不想接收商圈店家優惠相關訊息推播", true)),
+					}
+				}; result.Add(discountMsg);
+				#endregion
+			}
+
+			if (query["discountMsg"] != null)
+			{
+				#region 接收活動訊息推播
+				var message = new TextMessage($"完成設定接收推播訊息");
+				message.QuickReply = new QuickReply
+				{
+					Items = new List<QuickReplyButtonObject>
+					{
+						new QuickReplyButtonObject(new PostbackTemplateAction("重新設定", $"discountMsg=true", "設定接收推播訊息", true)),
+						new QuickReplyButtonObject(new PostbackTemplateAction("完成", $"discountMsg=true")),
+					}
+				}; result.Add(message);
+
 				#endregion
 			}
 
