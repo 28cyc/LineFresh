@@ -31,7 +31,7 @@ namespace LineFresh
 						{
 							case "老虎燈箱賓果":
 								var bingoContainer = textTemp("老虎燈箱賓果遊戲規則",
-									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+									"開起挑戰後會得到一個老虎燈箱的九宮格，在商圈內找到九宮格內對應的老虎燈箱圖後，可點擊對應的宮格進行答題賓果，若完成兩條連線則可獲得點數。");
 								var bingoMessage = new FlexMessage("老虎燈箱賓果遊戲規則") { Contents = bingoContainer };
 								bingoMessage.QuickReply = new QuickReply
 								{
@@ -45,7 +45,7 @@ namespace LineFresh
 
 							case "食字路口接龍":
 								var foodNameContainer = textTemp("食字路口接龍遊戲規則",
-									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+									"由官方帳號出題，需利用指定食物的最後一個字（可為同音字）來進行美食接龍，並輸入接龍之美食與回傳定位，成功接龍三次後即可獲得點數。*若食物之最後一個字無法接出美食，則可利用倒數第二個字進行接龍（以此類推）答題範例：豆漿->薑汁豆花 or 包子->包心粉圓");
 								var foodNameMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = foodNameContainer };
 								foodNameMessage.QuickReply = new QuickReply
 								{
@@ -59,7 +59,7 @@ namespace LineFresh
 
 							case "小鎮散步觀察家":
 								var townWalkContainer = textTemp("小鎮散步觀察家投稿規則",
-									"巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+									"深入走訪虎尾魅力商圈，用心觀察每一個巷弄、每一間商家以及每一個片刻，拍下最符合投稿主題的畫面。加入社群後，即可將您的照片投稿至平台上，與社群內的好友們互相交流任何關於魅力商圈的一切。");
 								var townWalkMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = townWalkContainer };
 								townWalkMessage.QuickReply = new QuickReply
 								{
@@ -144,7 +144,7 @@ namespace LineFresh
 		{
 			//result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
 			var imagemapMessage = new ImagemapMessage(
-				"https://fakeimg.pl/240x240/",
+				"https://img.onl/ZdoDaj",
 				"老虎燈箱賓果",
 				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
