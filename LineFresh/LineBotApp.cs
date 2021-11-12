@@ -45,7 +45,9 @@ namespace LineFresh
 
 							case "食字路口接龍":
 								var foodNameContainer = textTemp("食字路口接龍遊戲規則",
-									"由官方帳號出題，需利用指定食物的最後一個字（可為同音字）來進行美食接龍，並輸入接龍之美食與回傳定位，成功接龍三次後即可獲得點數。*若食物之最後一個字無法接出美食，則可利用倒數第二個字進行接龍（以此類推）答題範例：豆漿->薑汁豆花 or 包子->包心粉圓");
+									@"由官方帳號出題，需利用指定食物的最後一個字（可為同音字）來進行美食接龍，並輸入接龍之美食與回傳定位，成功接龍三次後即可獲得點數。
+*若食物之最後一個字無法接出美食，則可利用倒數第二個字進行接龍（以此類推）
+答題範例：豆漿->薑汁豆花 or 包子->包心粉圓");
 								var foodNameMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = foodNameContainer };
 								foodNameMessage.QuickReply = new QuickReply
 								{
