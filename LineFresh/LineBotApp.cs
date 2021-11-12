@@ -132,6 +132,13 @@ namespace LineFresh
 								result.Add(new TextMessage($"請問第{position}張燈箱的店家為？"));
 								break;
 							#endregion
+
+							case "樂包子":
+								result.Add(new TextMessage($"答對了！完成第8格燈箱"));
+								break;
+							default:
+								result.Add(new TextMessage($"答錯了！再找看看吧"));
+								break;
 						}
 					}
 					break;
@@ -275,34 +282,29 @@ namespace LineFresh
 			var imagemapMessage = new ImagemapMessage(
 				"https://i.imgur.com/eHxanaE.jpg#",
 				"老虎燈箱賓果",
-				new ImagemapSize(990, 990),
+				new ImagemapSize(1040, 1040),
 				new List<IImagemapAction>
 				{
 					new MessageImagemapAction(
-						new ImagemapArea(0, 0, 330, 330), "找到第1張燈箱"),
+						new ImagemapArea(0, 0, 345, 345), "找到第1張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(330, 0, 330, 330), "找到第2張燈箱"),
+						new ImagemapArea(345, 0, 345, 345), "找到第2張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(660, 0, 330, 330), "找到第3張燈箱"),
+						new ImagemapArea(690, 0, 345, 345), "找到第3張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 330, 330, 330), "找到第4張燈箱"),
+						new ImagemapArea(0, 345, 345, 345), "找到第4張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(330, 330, 330, 330), "找到第5張燈箱"),
+						new ImagemapArea(345, 345, 345, 345), "找到第5張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(660, 330, 330, 330), "找到第6張燈箱"),
+						new ImagemapArea(690, 345, 345, 345), "找到第6張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(0, 660, 330, 330), "找到第7張燈箱"),
+						new ImagemapArea(0, 690, 345, 345), "找到第7張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(330, 660, 330, 330), "找到第8張燈箱"),
+						new ImagemapArea(345, 690, 345, 345), "找到第8張燈箱"),
 					new MessageImagemapAction(
-						new ImagemapArea(660, 660, 330, 330), "找到第9張燈箱"),
+						new ImagemapArea(690, 690, 345, 345), "找到第9張燈箱"),
 				});
 			result.Add(imagemapMessage);
-		}
-
-		public void answerBingo()
-		{
-
 		}
 		#endregion
 
