@@ -185,9 +185,9 @@ namespace LineFresh
 			{
 				#region 推薦店家條件
 				string type = query["findShop"];
-				var message = new TextMessage($"條件：{type}");
-				//var message = new TextMessage($"選擇推薦的條件依據");
-				result.Add(message);
+				//var message = new TextMessage($"條件：{type}");
+				var lineSpotMessage = new FlexMessage("北港阿榮古早味-虎尾店") { Contents = lineSpotTemp() };
+				result.Add(lineSpotMessage);
 				#endregion
 			}
 
@@ -345,6 +345,76 @@ namespace LineFresh
 					Contents = new IFlexComponent[]
 					{
 						button,
+						new SpacerComponent
+						{
+							Size = ComponentSize.Sm
+						}
+					},
+					Flex = 0
+				}
+			};
+			return container;
+		}
+		#endregion
+
+		#region LINE熱點 模板 lineSpotTemp
+		public BubbleContainer lineSpotTemp()
+		{
+			var container = new BubbleContainer
+			{
+				Hero = new ImageComponent
+				{
+					Url = "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png"
+				},
+				Body = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Contents = new IFlexComponent[]
+					{
+						new TextComponent
+						{
+							Text = $"北港阿榮古早味-虎尾店",
+							Size = ComponentSize.Lg,
+							Weight = Weight.Bold
+						},
+						new IconComponent
+						{
+							Url="https://cdn-icons-png.flaticon.com/512/1946/1946488.png",
+						},
+						new TextComponent
+						{
+							Text = $"雲林縣虎尾鎮中山路61號",
+							Size = ComponentSize.Sm,
+							Color = "#666666",
+							Wrap = true,
+							Flex = 5
+						},
+						new IconComponent
+						{
+							Url="https://cdn-icons-png.flaticon.com/512/159/159832.png",
+						},
+						new TextComponent
+						{
+							Text = $"0905 398 060",
+							Size = ComponentSize.Sm,
+							Color = "#666666",
+							Wrap = true,
+							Flex = 5
+						}
+					},
+				},
+				Footer = new BoxComponent
+				{
+					Layout = BoxLayout.Vertical,
+					Spacing = Spacing.Sm,
+					Contents = new IFlexComponent[]
+					{
+						new ButtonComponent
+						{
+							Style = ButtonStyle.Primary,
+							Height = ButtonHeight.Sm,
+							Action = new UriTemplateAction("查看更多", "https://spot.line.me/detail/608436397870683437?utm_campaign=608436397870683437&utm_medium=CopyURL&utm_source=Share")
+						},
 						new SpacerComponent
 						{
 							Size = ComponentSize.Sm
