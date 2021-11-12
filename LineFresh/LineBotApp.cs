@@ -77,9 +77,9 @@ namespace LineFresh
 								{
 									Items = new List<QuickReplyButtonObject>
 									{
-										new QuickReplyButtonObject(new PostbackTemplateAction("美食", $"shopType=美食")),
-										new QuickReplyButtonObject(new PostbackTemplateAction("飲料", $"shopType=飲料")),
-										new QuickReplyButtonObject(new PostbackTemplateAction("服飾", $"shopType=服飾"))
+										new QuickReplyButtonObject(new PostbackTemplateAction("美食", $"shopType=美食", "美食", true)),
+										new QuickReplyButtonObject(new PostbackTemplateAction("飲料", $"shopType=飲料", "飲料", true)),
+										new QuickReplyButtonObject(new PostbackTemplateAction("服飾", $"shopType=服飾", "服飾", true))
 									}
 								};
 								result.Add(message);
@@ -172,9 +172,9 @@ namespace LineFresh
 				{
 					Items = new List<QuickReplyButtonObject>
 					{
-						new QuickReplyButtonObject(new PostbackTemplateAction("隨機", $"findShop=隨機")),
-						new QuickReplyButtonObject(new PostbackTemplateAction("價位", $"findShop=價位")),
-						new QuickReplyButtonObject(new LocationTemplateAction("定位距離"))
+						new QuickReplyButtonObject(new PostbackTemplateAction("隨機", $"findShop=隨機", "隨機", true)),
+						new QuickReplyButtonObject(new PostbackTemplateAction("價位", $"findShop=價位", "價位", true)),
+						new QuickReplyButtonObject(new PostbackTemplateAction("距離", $"findShop=距離", "距離", true)),
 					}
 				};
 				result.Add(message);
