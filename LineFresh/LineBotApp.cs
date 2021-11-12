@@ -383,17 +383,40 @@ namespace LineFresh
 				},
 				Body = new BoxComponent
 				{
-					Layout = BoxLayout.Baseline,
+					Layout = BoxLayout.Vertical,
 					Contents = new IFlexComponent[]
 					{
-						new IconComponent
+						new BoxComponent
 						{
-							Url = "https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
+							Layout = BoxLayout.Baseline,
+							Contents = new IFlexComponent[]
+							{
+								new IconComponent
+								{
+									Url = "https://cdn-icons-png.flaticon.com/512/535/535137.png"
+								},
+								new TextComponent
+								{
+									Text = $" 雲林縣虎尾鎮中山路61號",
+									Wrap = true,
+								}
+							}
 						},
-						new TextComponent
+						new BoxComponent
 						{
-							Text = $"雲林縣虎尾鎮中山路61號",
-							Wrap = true,
+							Layout = BoxLayout.Baseline,
+							Contents = new IFlexComponent[]
+							{
+								new IconComponent
+								{
+									Url = "https://cdn-icons.flaticon.com/png/512/2954/premium/2954123.png?token=exp=1636711883~hmac=e295f2e164e0057fc13958302d440944"
+								},
+								new TextComponent
+								{
+									Text = $" 0905 398 060",
+									Wrap = true,
+								}                       
+							}
 						}
 					},
 				},
