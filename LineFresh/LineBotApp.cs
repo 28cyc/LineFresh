@@ -46,7 +46,7 @@ namespace LineFresh
 
 							case "食字路口接龍":
 								var foodNameContainer = textTemp("食字路口接龍遊戲規則",
-									@"由官方帳號出題，需利用指定食物的最後一個字（可為同音字）來進行美食接龍，並輸入接龍之美食與回傳定位，成功接龍三次後即可獲得點數。
+									@"由官方帳號出題，需利用指定食物的最後一個字（可為同音字）來進行美食接龍，並輸入接龍之美食與回傳在商圈內的定位，成功接龍三次後即可獲得點數。
 
 *若食物之最後一個字無法接出美食，則可利用倒數第二個字進行接龍（以此類推）
 
@@ -190,7 +190,15 @@ namespace LineFresh
 			{
 				#region 食字路口接龍
 				string topic = query["foodName"].Substring(0, 1);
-				result.Add(new TextMessage($"請回答以 {topic} 開頭的食物"));
+				var message = new TextMessage($"請回答以 {topic} 開頭的食物");
+				message.QuickReply = new QuickReply
+				{
+					Items = new List<QuickReplyButtonObject>
+					{
+						new QuickReplyButtonObject(new LocationTemplateAction("傳送定位")),
+					}
+				};
+				result.Add(message);
 				#endregion
 			}
 
