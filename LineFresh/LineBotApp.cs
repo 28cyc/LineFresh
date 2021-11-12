@@ -144,7 +144,7 @@ namespace LineFresh
 		{
 			//result.Add(new TextMessage($"讀完老虎燈箱賓果的規則"));
 			var imagemapMessage = new ImagemapMessage(
-				"https://github.com/28cyc/LineFresh/blob/main/LineFresh/bingo.jpg",
+				"https://github.com/28cyc/LineFresh/blob/main/LineFresh/Image/Bingo",
 				"老虎燈箱賓果",
 				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
