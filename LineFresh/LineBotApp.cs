@@ -101,13 +101,13 @@ namespace LineFresh
 
 							#region 還沒寫
 							case "查看我的集點卡":
-								result.Add(new TextMessage($"您擁有的集點卡如下："));
+								result.Add(new TextMessage($"您擁有的集點卡如下"));
 								break;
 							case "查看我的優惠券":
-								result.Add(new TextMessage($"您擁有的優惠券如下："));
+								result.Add(new TextMessage($"您擁有的優惠券如下"));
 								break;
 							case "商圈活動查詢":
-								result.Add(new TextMessage($"近期商圈的活動資訊如下："));
+								result.Add(new TextMessage($"近期商圈的活動資訊如下"));
 								break;
 							#endregion
 
@@ -226,7 +226,7 @@ namespace LineFresh
 					Items = new List<QuickReplyButtonObject>
 					{
 						new QuickReplyButtonObject(new MessageTemplateAction("重新設定", "設定接收推播訊息")),
-						new QuickReplyButtonObject(new MessageTemplateAction("完成" ,"")),
+						new QuickReplyButtonObject(new MessageTemplateAction("完成" ,"完成")),
 					}
 				}; result.Add(message);
 
