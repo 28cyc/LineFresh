@@ -343,7 +343,7 @@ namespace LineFresh
 				Height = ButtonHeight.Sm,
 				Action = new UriTemplateAction("加入社群", "https://line.me/ti/g2/XY6wleDShv0_w0YHwDdtfDh773qT4-nCFtpIqw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default")
 			};
-			var container = buttonTemp("小鎮散步觀察家", "本期投稿主題：TEST", button);
+			var container = buttonTemp("小鎮散步觀察家", "本期投稿主題：愜意", button);
 			result.Add(new FlexMessage("小鎮散步觀察家本期投稿主題")
 			{
 				Contents = container
