@@ -150,9 +150,6 @@ namespace LineFresh
 						}
 					}
 					break;
-				default:
-					result.Add(new TextMessage($"訊息類型：{ev.Message.Type}"));
-					break;
 			}
 			if (result != null) await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
 		}
@@ -189,7 +186,7 @@ namespace LineFresh
 			if (query["foodName"] != null)
 			{
 				#region 食字路口接龍
-				string topic = query["foodName"].Substring(0, 1);
+				string topic = query["foodName"].Substring(query["foodName"].Length - 1);
 				var message = new TextMessage($"請回答以 {topic} 開頭的食物");
 				message.QuickReply = new QuickReply
 				{
