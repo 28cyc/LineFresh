@@ -29,9 +29,10 @@ namespace LineFresh
 						//文字回應
 						switch (textMessage.Text)
 						{
+							#region 三個遊戲規則
 							case "老虎燈箱賓果":
 								var bingoContainer = textTemp("老虎燈箱賓果遊戲規則",
-									"開起挑戰後會得到一個老虎燈箱的九宮格，在商圈內找到九宮格內對應的老虎燈箱圖後，可點擊對應的宮格進行答題賓果，若完成兩條連線則可獲得點數。");
+									"開始遊戲後會得到一個老虎燈箱的九宮格，在商圈內找到九宮格內對應的老虎燈箱圖後，可點擊對應的宮格進行答題賓果，若完成兩條連線則可獲得點數。");
 								var bingoMessage = new FlexMessage("老虎燈箱賓果遊戲規則") { Contents = bingoContainer };
 								bingoMessage.QuickReply = new QuickReply
 								{
@@ -46,7 +47,9 @@ namespace LineFresh
 							case "食字路口接龍":
 								var foodNameContainer = textTemp("食字路口接龍遊戲規則",
 									@"由官方帳號出題，需利用指定食物的最後一個字（可為同音字）來進行美食接龍，並輸入接龍之美食與回傳定位，成功接龍三次後即可獲得點數。
+
 *若食物之最後一個字無法接出美食，則可利用倒數第二個字進行接龍（以此類推）
+
 答題範例：豆漿->薑汁豆花 or 包子->包心粉圓");
 								var foodNameMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = foodNameContainer };
 								foodNameMessage.QuickReply = new QuickReply
@@ -61,7 +64,9 @@ namespace LineFresh
 
 							case "小鎮散步觀察家":
 								var townWalkContainer = textTemp("小鎮散步觀察家投稿規則",
-									"深入走訪虎尾魅力商圈，用心觀察每一個巷弄、每一間商家以及每一個片刻，拍下最符合投稿主題的畫面。加入社群後，即可將您的照片投稿至平台上，與社群內的好友們互相交流任何關於魅力商圈的一切。");
+									@"深入走訪虎尾魅力商圈，用心觀察每一個巷弄、每一間商家以及每一個片刻，拍下最符合投稿主題的畫面。
+
+加入社群後，即可將您的照片投稿至平台上，與社群內的好友們互相交流任何關於魅力商圈的一切。");
 								var townWalkMessage = new FlexMessage("食字路口接龍遊戲規則") { Contents = townWalkContainer };
 								townWalkMessage.QuickReply = new QuickReply
 								{
@@ -72,6 +77,7 @@ namespace LineFresh
 								};
 								result.Add(townWalkMessage);
 								break;
+							#endregion 
 
 							case "立即推薦店家":
 								var message = new TextMessage("選擇想找的店家類型");
@@ -99,7 +105,6 @@ namespace LineFresh
 								};
 								result.Add(activeMsg);
 								break;
-
 
 							#region 還沒寫
 							case "查看我的集點卡":
@@ -221,7 +226,7 @@ namespace LineFresh
 
 			if (query["discountMsg"] != null)
 			{
-				#region 接收活動訊息推播
+				#region 完成設定活動訊息推播
 				var message = new TextMessage($"完成設定接收推播訊息");
 				message.QuickReply = new QuickReply
 				{
@@ -266,7 +271,7 @@ namespace LineFresh
 		public void bingoGame(List<ISendMessage> result)
 		{
 			var imagemapMessage = new ImagemapMessage(
-				"https://scontent.ftpe1-3.fna.fbcdn.net/v/t39.30808-6/247923380_4791399447550292_2540412566026765861_n.jpg?_nc_cat=107&_nc_rgb565=1&ccb=1-5&_nc_sid=730e14&_nc_ohc=L7OcRmDqi5QAX_MDjIz&_nc_ht=scontent.ftpe1-3.fna&oh=42bd90d105e0c0b54e70d7441f2c262c&oe=6193B834",
+				"https://scontent.ftpe1-3.fna.fbcdn.net/v/t39.30808-6/247923380_4791399447550292_2540412566026765861_n.jpg?_nc_cat=107&_nc_rgb565=1&ccb=1-5&_nc_sid=730e14&_nc_ohc=L7OcRmDqi5QAX_MDjIz&_nc_ht=scontent.ftpe1-3.fna&oh=42bd90d105e0c0b54e70d7441f2c262c&oe=6193B834?",
 				"老虎燈箱賓果",
 				new ImagemapSize(1020, 1020),
 				new List<IImagemapAction>
